@@ -1,0 +1,40 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer [opened]="!isMobile()" class="example-sidenav"  [mode]="isMobile() ? 'over' : 'side'">
+    @if (showFiller) {
+      <mat-list class="d-flex align-items-center">
+        <mat-icon color="primary" class="mr-2">work</mat-icon>
+        <a mat-list-item href="">Cursos</a>
+      </mat-list>
+      <mat-list class="d-flex align-items-center">
+        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <a mat-list-item href="">Profesores</a>
+      </mat-list>
+      <mat-list class="d-flex align-items-center">
+        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <a mat-list-item href="">Alumnos</a>
+      </mat-list>
+    }
+    <!-- <button (click)="showFiller = !showFiller" mat-raised-button>
+      <mat-icon>list</mat-icon>
+    </button> -->
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="toolbar">
+        <button
+        (click)="drawer.toggle()"
+        mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Universidad de Naboo</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <main style="padding: 1rem">
+    <app-students />
+  </main>
+
+</mat-drawer-container>
+
