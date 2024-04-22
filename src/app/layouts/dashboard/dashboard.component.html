@@ -33,6 +33,17 @@
     </mat-toolbar>
   </div>
   <main style="padding: 1rem">
+    <div class="d-flex">
+      <button (click)="login()" mat-flat-button>Iniciar sesión</button>
+      <button (click)="ngOnDestroy()" mat-flat-button>Destruir componente</button>
+      @if (authUser$ | async) {
+        <div>{{ (authUser$ | async)?.firstName}}</div>
+      }
+    </div>
+    <input type="text" placeholder="Filtrar por nombre" #filterInput (input)="filterUsers(filterInput.value)">
+    <ul>
+      <li *ngFor="let user of filteredUsers$ | async">{{ user.firstName }} - {{ user.email }}</li>
+    </ul>
     <app-students />
   </main>
 
