@@ -35,7 +35,7 @@
   <main style="padding: 1rem">
     <div class="d-flex">
       <button (click)="login()" mat-flat-button>Iniciar sesión</button>
-      <button (click)="ngOnDestroy()" mat-flat-button>Destruir componente</button>
+      <button (click)="ngOnDestroy()" mat-flat-button>Cerrar sesión</button>
       @if (authUser$ | async) {
         <div>{{ (authUser$ | async)?.firstName}}</div>
       }
