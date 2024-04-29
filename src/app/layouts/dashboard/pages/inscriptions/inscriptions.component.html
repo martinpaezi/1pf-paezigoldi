@@ -1,0 +1,21 @@
+<div class="d-flex">
+  <button (click)="login()" mat-flat-button color="primary">Iniciar sesión</button>
+  <button (click)="ngOnDestroy()" mat-flat-button color="warn">Cerrar sesión</button>
+  <div *ngIf="authUser$ | async as user" class="user-info">
+    <mat-icon>person</mat-icon>
+    <span>{{ user.firstName }}</span>
+  </div>
+</div>
+
+<mat-form-field>
+  <input type="text" matInput placeholder="Filtrar por nombre" #filterInput (input)="filterUsers(filterInput.value)">
+</mat-form-field>
+
+<ul>
+  <li *ngFor="let user of filteredUsers$ | async">
+    <mat-list-item>
+      <div mat-line>{{ user.firstName }}</div>
+      <div mat-line>{{ user.email }}</div>
+    </mat-list-item>
+  </li>
+</ul>

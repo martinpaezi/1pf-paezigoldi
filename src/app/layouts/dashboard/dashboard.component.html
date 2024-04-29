@@ -1,18 +1,34 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer [opened]="!isMobile()" class="example-sidenav"  [mode]="isMobile() ? 'over' : 'side'">
     @if (showFiller) {
-      <mat-list class="d-flex align-items-center">
+      <mat-nav-list class="d-flex align-items-center">
+        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <a routerLink="home" mat-list-item href="">Inicio</a>
+      </mat-nav-list>
+      <mat-nav-list class="d-flex align-items-center">
         <mat-icon color="primary" class="mr-2">work</mat-icon>
-        <a mat-list-item href="">Cursos</a>
-      </mat-list>
-      <mat-list class="d-flex align-items-center">
+        <a routerLink="courses" mat-list-item href="">Cursos</a>
+      </mat-nav-list>
+      <mat-nav-list class="d-flex align-items-center">
         <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
-        <a mat-list-item href="">Profesores</a>
-      </mat-list>
-      <mat-list class="d-flex align-items-center">
+        <a routerLink="professors" mat-list-item href="">Profesores</a>
+      </mat-nav-list>
+      <mat-nav-list class="d-flex align-items-center">
         <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
-        <a mat-list-item href="">Alumnos</a>
-      </mat-list>
+        <a routerLink="students" mat-list-item href="">Alumnos</a>
+      </mat-nav-list>
+      <mat-nav-list class="d-flex align-items-center">
+        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <a routerLink="inscriptions" mat-list-item href="">Inscripciones</a>
+      </mat-nav-list>
+      <mat-nav-list class="d-flex align-items-center">
+        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <a routerLink="classes" mat-list-item href="">Clases</a>
+      </mat-nav-list>
+      <mat-nav-list class="d-flex align-items-center">
+        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <a mat-list-item href="">Cerrar sesión</a>
+      </mat-nav-list>
     }
     <!-- <button (click)="showFiller = !showFiller" mat-raised-button>
       <mat-icon>list</mat-icon>
@@ -33,18 +49,8 @@
     </mat-toolbar>
   </div>
   <main style="padding: 1rem">
-    <div class="d-flex">
-      <button (click)="login()" mat-flat-button>Iniciar sesión</button>
-      <button (click)="ngOnDestroy()" mat-flat-button>Cerrar sesión</button>
-      @if (authUser$ | async) {
-        <div>{{ (authUser$ | async)?.firstName}}</div>
-      }
-    </div>
-    <input type="text" placeholder="Filtrar por nombre" #filterInput (input)="filterUsers(filterInput.value)">
-    <ul>
-      <li *ngFor="let user of filteredUsers$ | async">{{ user.firstName }} - {{ user.email }}</li>
-    </ul>
-    <app-students />
+    <!-- <app-students /> -->
+    <router-outlet />
   </main>
 
 </mat-drawer-container>
