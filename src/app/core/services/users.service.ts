@@ -5,15 +5,8 @@ import { IStudents } from "../../layouts/dashboard/pages/students/models";
 @Injectable({ providedIn: 'root'})
 export class UsersService {
 
-  _authUser$ = new BehaviorSubject<IStudents | null>(null);
+  private _authUser$ = new BehaviorSubject<IStudents | null>(null);
   public authUser$ = this._authUser$.asObservable();
-
-  private mockUsers: IStudents[] = [
-    { id: 1, firstName: 'Martín', lastName: 'Páez', email: 'martin@mail.com', fullName: '', course: 'Programación', role: 'ESTUDIANTE', createdAt: new Date() },
-    { id: 2, firstName: 'Andrés', lastName: 'Igoldi', email: 'andres@mail.com', fullName: '', course: 'Marketing', role: 'ESTUDIANTE', createdAt: new Date() },
-    { id: 3, firstName: 'Juan', lastName: 'Espinola', email: 'juan@mail.com', fullName: '', course: 'Diseño', role: 'ESTUDIANTE', createdAt: new Date() },
-    { id: 4, firstName: 'Sebastian', lastName: 'Pinola', email: 'seba@mail.com', fullName: '', course: 'Fotografía', role: 'ESTUDIANTE', createdAt: new Date() }
-  ];
 
   constructor() {}
 
@@ -27,10 +20,7 @@ export class UsersService {
       email: 'martin@mail.com',
       role: 'ADMIN',
       createdAt: new Date()    
-    })
+    });
   }
 
-  getAllUsers(): Promise<IStudents[]> {
-    return Promise.resolve(this.mockUsers);
-  }
 }

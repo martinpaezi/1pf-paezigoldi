@@ -7,6 +7,7 @@ import { IClass } from './models';
   templateUrl: './classes.component.html',
   styleUrl: './classes.component.scss'
 })
+
 export class ClassesComponent implements OnInit {
 classes: IClass[] = [];
   

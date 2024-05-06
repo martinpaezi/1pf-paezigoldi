@@ -10,6 +10,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'; 
 import { StudentsModule } from './pages/students/students.module';
 import { SharedModule } from '../../shared/shared.module';
+import { AuthModule } from '../auth/auth.module';
 
 // import { FullNamePipe } from './pages/pipes/full-name.pipe';
 
@@ -27,6 +28,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatButtonModule,
     StudentsModule,
     SharedModule,
+    AuthModule
   ],
   exports: [DashboardComponent],
 })

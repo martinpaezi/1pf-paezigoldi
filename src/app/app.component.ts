@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../environments/environment.development';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'proyecto-final';
+
+  constructor(){
+    if(!environment.isProd){
+      console.log(environment)
+    }
+  }
 }
