@@ -38,7 +38,20 @@ export class ProfessorsService {
     return this.httpClient.get<IProfessors[]>(environment.baseAPIURL + '/users')
   }
 
+  createProfessor(payload: IProfessors): Observable<IProfessors> {
+    return this.httpClient.post<IProfessors>(`${environment.baseAPIURL}/users`, payload)
+  }
+
+  updateProfessor(id: number, payload: IProfessors): Observable<IProfessors> {
+    return this.httpClient.put<IProfessors>(`${environment.baseAPIURL}/users/${id}`, payload);
+  }
+
+  deleteProfessor(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.baseAPIURL}/users/${id}`);
+  }
   // getProfessors(): Observable<IProfessors[]> {
   //   return of(PROFESSORS_DB).pipe(delay(1500));
   // }
 }
+
+// environment.baseAPIURL + 

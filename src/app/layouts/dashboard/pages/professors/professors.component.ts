@@ -21,7 +21,7 @@ export class ProfessorsComponent implements OnInit {
   constructor(
     private matDialog: MatDialog,
     private professorsService: ProfessorsService 
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -35,37 +35,61 @@ export class ProfessorsComponent implements OnInit {
       complete: () => {
         this.loading = false;
       }
-    })
+    });
   }
 
+  openDialog(editingProfessor?: IProfessors): void {
+    const dialogRef = this.matDialog.open(ProfessorsDialogComponent, {
+      data: editingProfessor ? {...editingProfessor} : null,
+    });
 
-    openDialog(editingProfessor?: IProfessors): void {
-      this.matDialog
-      .open(ProfessorsDialogComponent, {
-        data: editingProfessor,
-      })
-      .afterClosed()
-      .subscribe({
-        next: (result) => {
-          if(result){
-
-            if(editingProfessor) {
-              this.professors = this.professors.map((s) => s.id === editingProfessor.id ? {...s, ...result} : s);
-            } else {
-              result.id = new Date().getTime().toString().substring(0,4);
-              result.createdAt = new Date();
-              this.professors = [...this.professors, result];
-            }
-          }
-        },
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (editingProfessor) {
+          this.updateProfessor(editingProfessor.id, result);
+        } else {
+          this.createProfessor(result);
+        }
+      }
+    });
   }
 
-  onDelete(id: number): void{
+  createProfessor(professor: IProfessors): void {
+    professor.createdAt = new Date();
+    this.professorsService.createProfessor(professor).subscribe({
+      next: (professorCreated) => {
+        this.professors.push(professorCreated);
+      },
+      error: (err) => {
+        Swal.fire('Error', '¡Oh no, ocurrió un error!', 'error');
+      }
+    });
+  }
+
+  updateProfessor(id: number, professor: IProfessors): void {
+    this.professorsService.updateProfessor(id, professor).subscribe({
+      next: (updatedProfessor) => {
+        const index = this.professors.findIndex(p => p.id === id);
+        if (index !== -1) {
+          this.professors[index] = updatedProfessor;
+        }
+      },
+      error: (err) => {
+        Swal.fire('Error', '¡Oh no, ocurrió un error!', 'error');
+      }
+    });
+  }
+
+  onDelete(id: number): void {
     if (confirm('¿Estás seguro que deseas eliminarlo?')){
-    this.professors = this.professors.filter((s) => s.id != id)
-  }}
-
+      this.professorsService.deleteProfessor(id).subscribe({
+        next: () => {
+          this.professors = this.professors.filter((s) => s.id !== id);
+        },
+        error: (err) => {
+          Swal.fire('Error', '¡Oh no, ocurrió un error!', 'error');
+        }
+      });
+    }
+  }
 }
-
- 

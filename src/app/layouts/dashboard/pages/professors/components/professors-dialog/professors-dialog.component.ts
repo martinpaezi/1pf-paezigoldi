@@ -12,32 +12,33 @@ export class ProfessorsDialogComponent {
 
   professorForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(
+    private formBuilder: FormBuilder, 
     private matDialogRef: MatDialogRef<ProfessorsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private editingProfessor?: IProfessors,
-    ) {
+    @Inject(MAT_DIALOG_DATA) public editingProfessor?: IProfessors,
+  ) {
     this.professorForm = this.formBuilder.group({
+      id: [null],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required]],
       course: ['', [Validators.required]],
-      role: ['PROFESOR', [Validators.required]]
+      role: ['PROFESOR', [Validators.required]],
+      createdAt: [null]
     });
 
-    if(editingProfessor){
-      this.professorForm.patchValue(editingProfessor)
+    if (this.editingProfessor) {
+      this.professorForm.patchValue(this.editingProfessor);
     }
   }
 
   onSave(): void {
-    if(this.professorForm.invalid) {
-      this.professorForm.markAllAsTouched
+    if (this.professorForm.invalid) {
+      this.professorForm.markAllAsTouched();
     } else {
-      this.matDialogRef.close(this.professorForm.value)
+      this.matDialogRef.close(this.professorForm.value);
     }
   }
-
 }
-
 
 

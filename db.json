@@ -8,7 +8,7 @@
       "course": "Angular",
       "email": "martin@mail.com",
       "role": "ADMIN",
-      "createdAt": "new Date()"
+      "createdAt": "2024-05-09T19:05:53.559Z"
     },
     {
       "id": "2",
@@ -18,8 +18,16 @@
       "email": "andres@mail.com",
       "course": "Marketing",
       "role": "PROFESOR",
-      "createdAt": ""
+      "createdAt": "new Date()"
+    },
+    {
+      "id": "2a18",
+      "firstName": "Robert",
+      "lastName": "Pan",
+      "email": "asd@mail.com",
+      "course": "asd",
+      "role": "PROFESOR",
+      "createdAt": "2024-05-09T20:00:24.969Z"
     }
-  ],
-  "professors": []
+  ]
 }

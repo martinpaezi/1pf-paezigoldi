@@ -10,3 +10,12 @@ export interface IProfessors {
   role: Role;
   createdAt: Date;
 }
+
+export interface CreateProfessorPayload {
+  firstName: string | null;
+  lastName: string | null;
+  fullName: string | null;
+  course: string | null;
+  email: string | null;
+  role: Role | null;
+}
