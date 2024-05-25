@@ -1,5 +1,5 @@
 {
-  "users": [
+  "students": [
     {
       "id": "1",
       "firstName": "Martin",
@@ -18,16 +18,105 @@
       "email": "andres@mail.com",
       "course": "Marketing",
       "role": "PROFESOR",
-      "createdAt": "new Date()"
+      "createdAt": "2024-05-09T19:05:53.559Z"
     },
     {
-      "id": "2a18",
+      "id": "3",
       "firstName": "Robert",
       "lastName": "Pan",
       "email": "asd@mail.com",
       "course": "asd",
       "role": "PROFESOR",
       "createdAt": "2024-05-09T20:00:24.969Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "3d3c",
+      "firstName": "pepe",
+      "lastName": "Pasas",
+      "email": "pepe@mail",
+      "course": "obstetricia",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-05-25T16:09:48.485Z"
+    },
+    {
+      "id": "682d",
+      "firstName": "damian",
+      "lastName": "Fede",
+      "email": "dd@mail",
+      "course": "dados",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-05-25T16:13:02.106Z"
+    },
+    {
+      "id": "0108",
+      "firstName": "Miguel",
+      "lastName": "Astor",
+      "email": "asd@mail",
+      "course": "Portugues",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-05-25T17:12:34.955Z"
+    },
+    {
+      "id": "25fa",
+      "firstName": "Santino",
+      "lastName": "Lollo",
+      "email": "ls@mail",
+      "course": "Rock",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-05-25T17:40:14.361Z"
+    },
+    {
+      "id": "03e5",
+      "firstName": "Carlos",
+      "lastName": "Quintana",
+      "email": "car@mail",
+      "course": "Go",
+      "role": "PROFESOR",
+      "createdAt": "2024-05-25T18:21:58.935Z"
+    }
+  ],
+  "courses": [
+    {
+      "id": "pp11",
+      "name": "Angular"
+    },
+    {
+      "id": "pp12",
+      "name": "React"
+    },
+    {
+      "id": "pp13",
+      "name": "Vue"
+    },
+    {
+      "id": "pp14",
+      "name": "JavaScript"
+    },
+    {
+      "id": "pp15",
+      "name": "Python"
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": "abc123",
+      "courseId": "pp11",
+      "studentId": "1",
+      "date": "2024-05-20T10:00:00.000Z"
+    },
+    {
+      "id": "def456",
+      "courseId": "pp12",
+      "studentId": "2",
+      "date": "2024-05-21T11:30:00.000Z"
+    },
+    {
+      "id": "ghi789",
+      "courseId": "pp13",
+      "studentId": "3",
+      "date": "2024-05-22T13:45:00.000Z"
     }
   ]
 }

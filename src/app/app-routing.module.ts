@@ -21,11 +21,7 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: '/auth',
-  },
-  // {
-  //   path:'',
-  //   redirectTo: '/auth',
-  // }
+  }
 ];
 
 @NgModule({

@@ -12,12 +12,9 @@ import { StudentsModule } from './pages/students/students.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
 
-// import { FullNamePipe } from './pages/pipes/full-name.pipe';
-
 @NgModule({
   declarations: [
     DashboardComponent,
-    // FullNamePipe
   ],
   imports: [
     CommonModule,

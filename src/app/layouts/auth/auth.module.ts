@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatListModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SharedModule
   ]
 })
 export class AuthModule { }

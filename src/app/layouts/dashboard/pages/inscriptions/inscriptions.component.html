@@ -1,0 +1,31 @@
+<div *ngIf="loading$ | async; else content">
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #content>
+  <div *ngIf="error$ | async; else inscriptionsList">
+    <h2>Ocurrió un error al cargar las inscripciones.</h2>
+  </div>
+
+  <ng-template #inscriptionsList>
+    <h2>Listado de Inscripciones</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre del Estudiante</th>
+          <th>Curso</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inscription of inscriptions$ | async">
+          <td>{{ inscription.id }}</td>
+          <td>{{ inscription.studentName }}</td>
+          <td>{{ inscription.course }}</td>
+          <td>{{ inscription.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</ng-template>

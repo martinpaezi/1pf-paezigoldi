@@ -1,0 +1,38 @@
+<h2>{{ editingUserss ? 'Editar Usuario' : 'Agregar Usuario' }}</h2>
+
+<form [formGroup]="userssForm" (ngSubmit)="onSave()">
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="firstName">
+    <mat-error *ngIf="userssForm.controls['firstName'].hasError('required')">El nombre es obligatorio</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Apellido</mat-label>
+    <input matInput formControlName="lastName">
+    <mat-error *ngIf="userssForm.controls['lastName'].hasError('required')">El apellido es obligatorio</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email">
+    <mat-error *ngIf="userssForm.controls['email'].hasError('required')">El email es obligatorio</mat-error>
+    <mat-error *ngIf="userssForm.controls['email'].hasError('email')">El email no es válido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Curso</mat-label>
+    <input matInput formControlName="course">
+    <mat-error *ngIf="userssForm.controls['course'].hasError('required')">El curso es obligatorio</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Rol</mat-label>
+    <mat-select formControlName="role">
+      <mat-option value="PROFESOR">PROFESOR</mat-option>
+      <mat-option value="ESTUDIANTE">ESTUDIANTE</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-button type="submit" [disabled]="userssForm.invalid">Guardar</button>
+</form>

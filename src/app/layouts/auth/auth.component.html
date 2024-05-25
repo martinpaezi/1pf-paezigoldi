@@ -1,8 +1,21 @@
-<div class="d-flex">
-  <button (click)="login()" mat-flat-button color="primary">Iniciar sesión</button>
-  <!-- <button (click)="ngOnDestroy()" mat-flat-button color="warn">Cerrar sesión</button> -->
-  <!-- <div *ngIf="authUser$ | async as user" class="user-info">
-     <mat-icon>person</mat-icon>
-     <span>{{ user.firstName }}</span>
-  </div> -->
-</div>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div>
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="email" />
+    <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+      <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+      <small *ngIf="loginForm.get('email')?.errors?.['email']">Email must be valid</small>
+    </div>
+  </div>
+  
+  <div>
+    <label for="password">Password</label>
+    <input id="password" formControlName="password" type="password" />
+    <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+      <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
+    </div>
+  </div>
+
+  <button type="submit">Login</button>
+</form>
+

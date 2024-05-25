@@ -1,39 +1,29 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer [opened]="!isMobile()" class="example-sidenav" [mode]="isMobile() ? 'over' : 'side'">
+<mat-drawer-container class="navbar-container" autosize>
+  <mat-drawer #drawer [opened]="!isMobile()" class="sidenav" [mode]="isMobile() ? 'over' : 'side'">
     @if (showFiller) {
       <mat-nav-list class="d-flex align-items-center">
-        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <mat-icon class="mr-2 color-sidenav">perm_identity</mat-icon>
         <a routerLink="home" mat-list-item href="">Inicio</a>
       </mat-nav-list>
       <mat-nav-list class="d-flex align-items-center">
-        <mat-icon color="primary" class="mr-2">work</mat-icon>
+        <mat-icon class="mr-2 color-sidenav">work</mat-icon>
         <a routerLink="courses" mat-list-item href="">Cursos</a>
       </mat-nav-list>
-      <mat-nav-list class="d-flex align-items-center">
-        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
-        <a routerLink="professors" mat-list-item href="">Profesores</a>
+      <mat-nav-list *ngIf="currentUser.role === 'ADMIN'" class="d-flex align-items-center">
+        <mat-icon class="mr-2 color-sidenav">perm_identity</mat-icon>
+        <a routerLink="userss" mat-list-item href="">Usuarios</a>
       </mat-nav-list>
       <mat-nav-list class="d-flex align-items-center">
-        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <mat-icon class="mr-2 color-sidenav">perm_identity</mat-icon>
         <a routerLink="students" mat-list-item href="">Alumnos</a>
       </mat-nav-list>
       <mat-nav-list class="d-flex align-items-center">
-        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <mat-icon class="mr-2 color-sidenav">perm_identity</mat-icon>
         <a routerLink="inscriptions" mat-list-item href="">Inscripciones</a>
       </mat-nav-list>
       <mat-nav-list class="d-flex align-items-center">
-        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
-        <a routerLink="classes" mat-list-item href="">Clases</a>
-      </mat-nav-list>
-      <mat-nav-list class="d-flex align-items-center">
-        <mat-icon color="primary" class="mr-2">perm_identity</mat-icon>
+        <mat-icon class="mr-2 color-sidenav">perm_identity</mat-icon>
         <a mat-list-item href="">Cerrar sesión</a>
-        <div *ngIf="authUser$ | async as user" class="user-info">
-            <!-- <button (click)="ngOnDestroy()" mat-flat-button color="warn">Cerrar sesión</button> -->
-
-          <!-- <mat-icon>person</mat-icon> -->
-          <span>{{ user.firstName }}</span>
-        </div>
       </mat-nav-list>
     }
     <!-- <button (click)="showFiller = !showFiller" mat-raised-button>
@@ -41,25 +31,24 @@
     </button> -->
   </mat-drawer>
 
-  <div class="example-sidenav-content">
+  <div class="sidenav-content">
 
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <mat-toolbar-row class="toolbar">
         <button
           (click)="drawer.toggle()"
-          mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          mat-icon-button class="example-icon color-toolbar" aria-label="Example icon-button with menu icon">
           <mat-icon>menu</mat-icon>
         </button>
-        <span>Universidad de Naboo</span>
+        <div *ngIf="authUser$ | async as user" class="user-info">
+        <span>{{ user.firstName }}</span>
+        </div>
+        <span class="color-toolbar">Universidad de La Plata</span>
       </mat-toolbar-row>
     </mat-toolbar>
   </div>
   <main style="padding: 1rem">
-    <!-- <app-students /> -->
     <router-outlet></router-outlet>
   </main>
 
 </mat-drawer-container>
-
-
-

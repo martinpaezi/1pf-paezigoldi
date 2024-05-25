@@ -6,34 +6,34 @@ import { IStudents } from '../../models';
 @Component({
   selector: 'app-students-dialog',
   templateUrl: './students-dialog.component.html',
-  styleUrl: './students-dialog.component.scss'
+  styleUrls: ['./students-dialog.component.scss']
 })
 export class StudentsDialogComponent {
   studentForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(
+    private formBuilder: FormBuilder, 
     private matDialogRef: MatDialogRef<StudentsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private editingStudent?: IStudents,
-    ) {
+  ) {
     this.studentForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
-      // [Validators.required, Validators.pattern]
       lastName: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       course: ['', [Validators.required]],
-      role: ['STUDENT', [Validators.required]]
+      role: ['ESTUDIANTE', [Validators.required]]
     });
 
-    if(editingStudent){
-      this.studentForm.patchValue(editingStudent)
+    if (editingStudent) {
+      this.studentForm.patchValue(editingStudent);
     }
   }
 
   onSave(): void {
-    if(this.studentForm.invalid) {
-      this.studentForm.markAllAsTouched
+    if (this.studentForm.invalid) {
+      this.studentForm.markAllAsTouched();
     } else {
-      this.matDialogRef.close(this.studentForm.value)
+      this.matDialogRef.close(this.studentForm.value);
     }
   }
 }

@@ -21,19 +21,14 @@ const routes: Routes = [
         import('./pages/inscriptions/inscriptions.module').then((m) => m.InscriptionsModule),
       },
       {
-        path: 'professors',
+        path: 'userss',
         loadChildren: () => 
-        import('./pages/professors/professors.module').then((m) => m.ProfessorsModule),
+        import('./pages/userss/userss.module').then((m) => m.UserssModule),
       },
       {
         path: 'students',
         loadChildren: () => 
         import('./pages/students/students.module').then((m) => m.StudentsModule),
-      },
-      {
-        path: 'classes',
-        loadChildren: () => 
-        import('./pages/classes/classes.module').then((m) => m.ClassesModule),
       },
       {
         path: '',
