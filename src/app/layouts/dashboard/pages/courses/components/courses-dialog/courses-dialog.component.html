@@ -1,0 +1,23 @@
+<h2>{{ editingCourse ? 'Editar Curso' : 'Agregar Curso' }}</h2>
+<form [formGroup]="coursesForm">
+  <div class="row">
+    <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Curso</mat-label>
+          <input matInput formControlName="course">
+          <mat-error *ngIf="coursesForm.controls['course'].hasError('required')">El curso es obligatorio</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="col-6">
+        <mat-form-field  class="w-100 p-2" appearance="fill">
+          <mat-label>Alumnos</mat-label>
+          <input matInput formControlName="students">
+          <mat-error *ngIf="coursesForm.controls['students'].hasError('required')">Los alumnos son obligatorio</mat-error>
+        </mat-form-field>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end" mat-dialog-actions>
+    <button mat-button mat-dialog-close type="button">Cancelar</button>
+    <button mat-button type="submit" (click)="onSave()" [disabled]="coursesForm.invalid">Guardar</button>
+  </div>
+</form>

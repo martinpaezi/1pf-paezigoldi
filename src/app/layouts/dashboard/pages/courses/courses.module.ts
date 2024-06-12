@@ -6,20 +6,26 @@ import { EffectsModule } from '@ngrx/effects';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { CoursesRoutingModule } from './courses-routing.module';
-import { coursesReducer } from './store/course.reducer';
+import { courseFeature } from './store/course.reducer';
 import { CoursesEffects } from './store/course.effects';
+import { SharedModule } from '../../../../shared/shared.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
 
 @NgModule({
   declarations: [
-    CoursesComponent
+    CoursesComponent,
+    CoursesDialogComponent
   ],
   imports: [
     CommonModule,
     CoursesRoutingModule,
-    StoreModule.forFeature('courses', coursesReducer),
+    StoreModule.forFeature(courseFeature),
     EffectsModule.forFeature([CoursesEffects]),
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule,
+    MatProgressSpinnerModule
   ]
 })
 export class CoursesModule { }

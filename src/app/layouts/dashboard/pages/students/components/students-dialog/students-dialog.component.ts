@@ -14,16 +14,15 @@ export class StudentsDialogComponent {
   constructor(
     private formBuilder: FormBuilder, 
     private matDialogRef: MatDialogRef<StudentsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private editingStudent?: IStudents,
+    @Inject(MAT_DIALOG_DATA) public editingStudent: IStudents | null,
   ) {
     this.studentForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      course: ['', [Validators.required]],
-      role: ['ESTUDIANTE', [Validators.required]]
+      firstName: [editingStudent?.firstName || '', [Validators.required]],
+      lastName: [editingStudent?.lastName || '', [Validators.required]],
+      email: [editingStudent?.email || '', [Validators.required, Validators.email]],
+      course: [editingStudent?.course || '', [Validators.required]],
+      role: [editingStudent?.role || 'ESTUDIANTE', [Validators.required]]
     });
-
     if (editingStudent) {
       this.studentForm.patchValue(editingStudent);
     }

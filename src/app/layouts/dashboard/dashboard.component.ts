@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { IStudents } from './pages/students/models';
+import { Observable, Subject, map } from 'rxjs';
 import { UsersService } from '../../core/services/users.service';
+import { IUserss } from './pages/userss/models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TitleService } from '../../core/services/title.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,19 +13,25 @@ import { UsersService } from '../../core/services/users.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  authUser$: Observable<IStudents | null>;
+  authUser$: Observable<IUserss | null>;
   private unsubscribe$ = new Subject<void>();
-  currentUser!: IStudents;
+  currentUser: IUserss | null = null;
 
+  title$: Observable<string>;
 
-  constructor(private usersService: UsersService)
+  constructor(private usersService: UsersService, private router: Router, private titleService: TitleService,  private cdr: ChangeDetectorRef )
    {
     this.authUser$ = this.usersService.authUser$;
-  }
+    this.title$ = this.titleService.title$;
+}
 
   ngOnInit(): void {
-    this.authUser$.subscribe(user => console.log("Usuario autenticado:", user));
     this.currentUser = this.usersService.getAuthenticatedUser();
+    if (!this.currentUser) {
+      this.router.navigate(['/login']);
+    }    this.title$.subscribe(() => {
+      this.cdr.detectChanges();
+    });
   }
 
   ngOnDestroy(): void {

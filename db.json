@@ -5,9 +5,12 @@
       "firstName": "Martin",
       "lastName": "Paez",
       "fullName": "",
-      "course": "Angular",
+      "course": [
+        "Angular",
+        "React"
+      ],
       "email": "martin@mail.com",
-      "role": "ADMIN",
+      "role": "ESTUDIANTE",
       "createdAt": "2024-05-09T19:05:53.559Z"
     },
     {
@@ -21,102 +24,229 @@
       "createdAt": "2024-05-09T19:05:53.559Z"
     },
     {
-      "id": "3",
-      "firstName": "Robert",
-      "lastName": "Pan",
-      "email": "asd@mail.com",
-      "course": "asd",
+      "firstName": "Miguel",
+      "lastName": "Sanatos",
+      "email": "miguel@mail.com",
+      "course": "Backend",
       "role": "PROFESOR",
-      "createdAt": "2024-05-09T20:00:24.969Z"
+      "createdAt": "2024-06-11T20:26:46.114Z",
+      "id": "791d"
+    },
+    {
+      "id": "5175",
+      "firstName": "Juan",
+      "lastName": "Espinola",
+      "email": "sebasr5@mail.com",
+      "course": "Next",
+      "role": "PROFESOR",
+      "createdAt": "2024-06-12T20:30:41.877Z"
+    },
+    {
+      "id": "4d91",
+      "firstName": "Ramiro",
+      "lastName": "Ramirez",
+      "email": "rami@mail.com",
+      "course": "Vue",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-06-12T21:01:26.205Z"
+    },
+    {
+      "id": "3358",
+      "firstName": "Federico",
+      "lastName": "Fernandez",
+      "email": "fedefe@mail.com",
+      "course": "Go",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-06-12T21:02:00.262Z"
+    },
+    {
+      "id": "0fd5",
+      "firstName": "Matias",
+      "lastName": "Mansilla",
+      "email": "matimansilla@mail.com",
+      "course": "Diseño Multimedial",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-06-12T21:02:30.944Z"
+    },
+    {
+      "id": "33c5",
+      "firstName": "Guido",
+      "lastName": "Carrillo",
+      "email": "guido@mail.com",
+      "course": "Angular",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-06-12T21:03:00.351Z"
+    },
+    {
+      "id": "e354",
+      "firstName": "Mariano",
+      "lastName": "Andujar",
+      "email": "andujar@mail.com",
+      "course": "Desarrollo Web",
+      "role": "ESTUDIANTE",
+      "createdAt": "2024-06-12T21:03:28.565Z"
     }
   ],
   "users": [
     {
-      "id": "3d3c",
-      "firstName": "pepe",
-      "lastName": "Pasas",
-      "email": "pepe@mail",
-      "course": "obstetricia",
-      "role": "ESTUDIANTE",
-      "createdAt": "2024-05-25T16:09:48.485Z"
+      "firstName": "Pepé",
+      "lastName": "Pasa",
+      "password": "123456",
+      "email": "pepe@mail.com",
+      "role": "USER",
+      "createdAt": "2024-05-25T17:12:34.955Z",
+      "id": "3d3c"
     },
     {
-      "id": "682d",
-      "firstName": "damian",
-      "lastName": "Fede",
-      "email": "dd@mail",
-      "course": "dados",
-      "role": "ESTUDIANTE",
-      "createdAt": "2024-05-25T16:13:02.106Z"
+      "firstName": "Damian",
+      "lastName": "Fedens",
+      "email": "dd@mail.com",
+      "password": "123456",
+      "role": "USER",
+      "createdAt": "2024-05-25T17:12:34.955Z",
+      "id": "682d"
     },
     {
-      "id": "0108",
       "firstName": "Miguel",
       "lastName": "Astor",
-      "email": "asd@mail",
-      "course": "Portugues",
-      "role": "ESTUDIANTE",
-      "createdAt": "2024-05-25T17:12:34.955Z"
+      "password": "123456",
+      "email": "migue@mail.com",
+      "role": "ADMIN",
+      "createdAt": "2024-05-25T17:12:34.955Z",
+      "id": "0108"
     },
     {
-      "id": "25fa",
       "firstName": "Santino",
       "lastName": "Lollo",
-      "email": "ls@mail",
-      "course": "Rock",
-      "role": "ESTUDIANTE",
-      "createdAt": "2024-05-25T17:40:14.361Z"
+      "password": "123456",
+      "email": "santilo@mail.com",
+      "role": "USER",
+      "createdAt": "2024-05-25T17:40:14.361Z",
+      "id": "25fa"
     },
     {
-      "id": "03e5",
       "firstName": "Carlos",
       "lastName": "Quintana",
-      "email": "car@mail",
-      "course": "Go",
-      "role": "PROFESOR",
-      "createdAt": "2024-05-25T18:21:58.935Z"
+      "password": "123456",
+      "email": "carlos@mail.com",
+      "role": "ADMIN",
+      "createdAt": "2024-05-25T18:21:58.935Z",
+      "id": "03e5"
+    },
+    {
+      "firstName": "Carla",
+      "lastName": "Carson",
+      "password": "123456",
+      "email": "carcar@mail.com",
+      "role": "USER",
+      "createdAt": "2024-06-10T21:28:52.880Z",
+      "id": "c98c"
+    },
+    {
+      "id": "c659",
+      "firstName": "Miguel",
+      "lastName": "O'Hara",
+      "email": "spider@mail.com",
+      "password": "123456",
+      "role": "ADMIN",
+      "createdAt": "2024-06-11T03:52:11.796Z"
+    },
+    {
+      "firstName": "Juan",
+      "lastName": "Diaz",
+      "password": "123456",
+      "email": "juandiaz@mail.com",
+      "role": "ADMIN",
+      "createdAt": "2024-06-11T20:27:23.315Z",
+      "id": "6b3e"
     }
   ],
   "courses": [
     {
-      "id": "pp11",
-      "name": "Angular"
+      "id": "12",
+      "course": "React",
+      "students": "19",
+      "createdAt": "2024-06-11T20:27:23.315Z"
     },
     {
-      "id": "pp12",
-      "name": "React"
+      "id": "14",
+      "course": "JavaScript",
+      "students": "40",
+      "createdAt": "2024-06-11T20:27:23.315Z"
     },
     {
-      "id": "pp13",
-      "name": "Vue"
+      "id": "f186",
+      "course": "Periodismo",
+      "students": "33",
+      "createdAt": "2024-06-11T22:16:31.328Z"
     },
     {
-      "id": "pp14",
-      "name": "JavaScript"
+      "id": "531b",
+      "course": "Next",
+      "students": "33",
+      "createdAt": "2024-06-12T20:31:48.103Z"
     },
     {
-      "id": "pp15",
-      "name": "Python"
+      "id": "96d0",
+      "course": "Diseño UX/UI",
+      "students": "22",
+      "createdAt": "2024-06-12T21:00:03.646Z"
+    },
+    {
+      "id": "0676",
+      "course": "Python",
+      "students": "15",
+      "createdAt": "2024-06-12T21:00:21.412Z"
+    },
+    {
+      "id": "8070",
+      "course": "Vue",
+      "students": "7",
+      "createdAt": "2024-06-12T21:00:34.349Z"
     }
   ],
   "inscriptions": [
     {
-      "id": "abc123",
-      "courseId": "pp11",
-      "studentId": "1",
-      "date": "2024-05-20T10:00:00.000Z"
-    },
-    {
       "id": "def456",
-      "courseId": "pp12",
+      "courseId": "12",
       "studentId": "2",
       "date": "2024-05-21T11:30:00.000Z"
     },
     {
-      "id": "ghi789",
-      "courseId": "pp13",
-      "studentId": "3",
-      "date": "2024-05-22T13:45:00.000Z"
+      "id": "a0ff",
+      "courseId": "14",
+      "studentId": "1",
+      "date": "2024-06-12T15:52:02.180Z"
+    },
+    {
+      "id": "031f",
+      "courseId": "f186",
+      "studentId": "791d",
+      "date": "2024-06-12T16:32:37.624Z"
+    },
+    {
+      "id": "2867",
+      "courseId": "f186",
+      "studentId": "5175",
+      "date": "2024-06-12T20:31:24.703Z"
+    },
+    {
+      "id": "3bda",
+      "courseId": "0676",
+      "studentId": "3358",
+      "date": "2024-06-12T21:03:45.383Z"
+    },
+    {
+      "id": "9ffd",
+      "courseId": "12",
+      "studentId": "5175",
+      "date": "2024-06-12T21:06:58.734Z"
+    },
+    {
+      "id": "4609",
+      "courseId": "12",
+      "studentId": "4d91",
+      "date": "2024-06-12T21:07:09.602Z"
     }
   ]
 }

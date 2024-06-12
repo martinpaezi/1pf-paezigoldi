@@ -1,5 +1,4 @@
 <h2>Usuarios</h2>
-
 <ng-container>
   <div class="d-flex justify-content-end">
     <button (click)="openDialog()" mat-button color="primary">Agregar</button>
@@ -13,7 +12,7 @@
   
     <ng-container matColumnDef="fullName">
       <th mat-header-cell *matHeaderCellDef appTitleSize> Nombre Completo </th>
-      <td mat-cell *matCellDef="let element"> {{ element.fullName }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.firstName}} {{ element.lastName}} </td>
     </ng-container>
     
     <ng-container matColumnDef="email">
@@ -21,9 +20,9 @@
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="course">
-      <th mat-header-cell *matHeaderCellDef appTitleSize> Curso </th>
-      <td mat-cell *matCellDef="let element"> {{element.course}} </td>
+    <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef appTitleSize> Contraseña </th>
+      <td mat-cell *matCellDef="let element"> {{element.password}} </td>
     </ng-container>
   
     <ng-container matColumnDef="role">

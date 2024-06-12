@@ -9,7 +9,7 @@
         <mat-icon class="mr-2 color-sidenav">work</mat-icon>
         <a routerLink="courses" mat-list-item href="">Cursos</a>
       </mat-nav-list>
-      <mat-nav-list *ngIf="currentUser.role === 'ADMIN'" class="d-flex align-items-center">
+      <mat-nav-list *ngIf="currentUser?.role === 'ADMIN'" class="d-flex align-items-center">
         <mat-icon class="mr-2 color-sidenav">perm_identity</mat-icon>
         <a routerLink="userss" mat-list-item href="">Usuarios</a>
       </mat-nav-list>
@@ -26,9 +26,6 @@
         <a mat-list-item href="">Cerrar sesión</a>
       </mat-nav-list>
     }
-    <!-- <button (click)="showFiller = !showFiller" mat-raised-button>
-      <mat-icon>list</mat-icon>
-    </button> -->
   </mat-drawer>
 
   <div class="sidenav-content">
@@ -43,7 +40,7 @@
         <div *ngIf="authUser$ | async as user" class="user-info">
         <span>{{ user.firstName }}</span>
         </div>
-        <span class="color-toolbar">Universidad de La Plata</span>
+        <span class="color-toolbar">{{ title$ | async }}  -  Universidad de La Plata</span>
       </mat-toolbar-row>
     </mat-toolbar>
   </div>

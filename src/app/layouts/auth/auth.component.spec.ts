@@ -3,7 +3,7 @@ import { AuthComponent } from './auth.component';
 import { UsersService } from '../../core/services/users.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { IStudents } from '../dashboard/pages/students/models';
+import { IUserss } from '../dashboard/pages/userss/models';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -26,17 +26,17 @@ describe('AuthComponent', () => {
   });
 
   it('debería establecer authUser$ correctamente', () => {
-    const testUser: IStudents = {
+    const testUser: IUserss = {
       id: 1,
       firstName: 'Nombre',
       lastName: 'Apellido',
       fullName: 'Nombre Apellido',
-      course: '',
       email: '',
+      password: '',
       role: 'ADMIN',
       createdAt: new Date(),
     };
-    const userServiceAuthUser$ = new BehaviorSubject<IStudents | null>(testUser);
+    const userServiceAuthUser$ = new BehaviorSubject<IUserss | null>(testUser);
     
     component.authUser$ = userServiceAuthUser$;
 

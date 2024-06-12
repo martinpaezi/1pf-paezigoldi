@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>Agregar alumno</h2>
+<h2 mat-dialog-title>{{ editingStudent ? 'Editar alumno/profesor' : 'Agregar alumno/profesor' }}</h2>
+
 <div mat-dialog-content>
 
 <form [formGroup]="studentForm">
@@ -7,44 +8,46 @@
       <mat-form-field class="w-100">
         <mat-label>Nombre</mat-label>
         <input formControlName="firstName" matInput />
-        <mat-hint>El nombre debe tener al menos 3 caracteres</mat-hint>
+        <mat-hint>El nombre es obligatorio</mat-hint>
+        <mat-error *ngIf="studentForm.controls['firstName'].hasError('required')">El nombre es obligatorio</mat-error>
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field class="w-100">
         <mat-label>Apellido</mat-label>
         <input formControlName="lastName" matInput />
+        <mat-error *ngIf="studentForm.controls['lastName'].hasError('required')">El apellido es obligatorio</mat-error>
       </mat-form-field>
     </div>
     <div class="col-12">
       <mat-form-field class="w-100">
         <mat-label>Curso</mat-label>
         <input formControlName="course" matInput />
+        <mat-error *ngIf="studentForm.controls['course'].hasError('required')">El curso es obligatorio</mat-error>
       </mat-form-field>
     </div>
     <div class="col-8">
       <mat-form-field class="w-100">
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput />
+        <mat-error *ngIf="studentForm.controls['email'].hasError('required')">El email es obligatorio</mat-error>
+        <mat-error *ngIf="studentForm.controls['email'].hasError('email')">El email no es válido</mat-error>
       </mat-form-field>
     </div>
     <div class="col-4">
       <mat-form-field class="w-100">
         <mat-label>Rol</mat-label>
         <mat-select formControlName="role">
-          <mat-option value="ADMIN">ADMIN</mat-option>
           <mat-option value="ESTUDIANTE">ESTUDIANTE</mat-option>
           <mat-option value="PROFESOR">PROFESOR</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
   </div>
-</form>
-
-
-</div>
 
 <div class="d-flex justify-content-end" mat-dialog-actions>
-  <button mat-dialog-close mat-button>Cancelar</button>
-  <button (click)="onSave()" mat-button>Guardar</button>
+  <button type="button" mat-dialog-close mat-button>Cancelar</button>
+  <button type="submit" (click)="onSave()" mat-button [disabled]="studentForm.invalid">Guardar</button>
+</div>
+</form>
 </div>

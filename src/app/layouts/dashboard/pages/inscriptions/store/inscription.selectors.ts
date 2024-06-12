@@ -5,17 +5,14 @@ export const selectInscriptionState = createFeatureSelector<fromInscription.Stat
   fromInscription.inscriptionFeatureKey
 );
 
-export const selectLoading = createSelector(
+export const selectIsLoading = createSelector(
   selectInscriptionState,
-  (state: fromInscription.State) => state.loading
+  (state) => state.loading
 );
 
-export const selectInscriptions = createSelector(
-  selectInscriptionState,
-  (state: fromInscription.State) => state.data
-);
+export const selectInscription = createSelector(selectInscriptionState, (s) => s.inscriptions);
 
-export const selectError = createSelector(
+export const selectInscriptionError = createSelector(
   selectInscriptionState,
-  (state: fromInscription.State) => state.error
-);
+  (state) => state.error
+  );

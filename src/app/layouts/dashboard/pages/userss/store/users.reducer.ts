@@ -1,14 +1,13 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { UserActions } from './users.actions';
 import { IUserss } from '../models';
-import { HttpErrorResponse } from '@angular/common/http';
 
-export const userFeatureKey = 'user';
+export const userFeatureKey = 'users';
 
 export interface State {
   users: IUserss[];
   isLoading: boolean;
-  error: HttpErrorResponse | null;
+  error: unknown;
 }
 
 export const initialState: State = {
@@ -19,15 +18,19 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(UserActions.loadUsers, (state) => ({
+  on(UserActions.loadUsers, (state) => {
+    return {
     ...state,
     isLoading: true,
-  })),
+    };
+  }),
+
   on(UserActions.loadUsersSuccess, (state, action) => ({
     ...state,
     isLoading: false,
     users: action.data,
   })),
+
   on(UserActions.loadUsersFailure, (state, action) => ({
     ...state,
     isLoading: false,
@@ -81,7 +84,7 @@ export const reducer = createReducer(
   on(UserActions.deleteUserByIdSuccess, (state, action) => ({
     ...state,
     isLoading: false,
-    users: state.users.filter(user => user.id !== action.id),
+    users: state.users.filter(user => user.id !== action.data.id),
   })),
 
   on(UserActions.deleteUserByIdFailure, (state, action) => ({
@@ -89,4 +92,6 @@ export const reducer = createReducer(
     isLoading: false,
     error: action.error,
   }))
-);
+)
+
+export const userFeature = createFeature({ name: userFeatureKey, reducer });

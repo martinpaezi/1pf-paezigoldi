@@ -1,21 +1,110 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
+import { createFeature, createReducer, on, Action } from '@ngrx/store';
 import { IStudents } from '../models';
-import * as StudentActions from './student.actions';
+import { StudentActions } from './student.actions';
 
-export interface StudentState extends EntityState<IStudents> {}
+export const studentFeatureKey = 'students';
 
-export const studentAdapter = createEntityAdapter<IStudents>();
+ export interface State {
+   students: IStudents[];
+   isLoading: boolean;
+   error: unknown;
+ }
 
-const initialState: StudentState = studentAdapter.getInitialState();
+  export const initialState: State = {
+    students: [],
+    isLoading: false,
+    error: null,
+  };
 
-const studentReducer = createReducer(
-  initialState,
-  on(StudentActions.addStudent, (state, { student }) => studentAdapter.addOne(student, state)),
-  on(StudentActions.updateStudent, (state, { id, changes }) => studentAdapter.updateOne({ id, changes }, state)),
-  on(StudentActions.deleteStudent, (state, { id }) => studentAdapter.removeOne(id, state))
-);
+  export const reducer = createReducer(
+    initialState,
 
-export function reducer(state: StudentState | undefined, action: Action) {
-  return studentReducer(state, action);
-}
+    on(StudentActions.loadStudents, (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }),
+
+    on(StudentActions.loadStudentsSuccess, (state, action) => {
+      return {
+        ...state,
+        isLoading: false,
+        students: action.data,
+      };
+    }),
+
+    on(StudentActions.loadStudentsFailure, (state, action) => {
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+      };
+    }),
+
+    on(StudentActions.createStudent, (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }),
+
+    on(StudentActions.createStudentSuccess, (state, action) => {
+      return {
+        ...state,
+        isLoading: false,
+        student: [...state.students, action.data],
+      };
+    }),
+    on(StudentActions.createStudentFailure, (state, action) => {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
+      };
+    }),
+
+  on(StudentActions.updateStudent, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+
+  on(StudentActions.updateStudentSuccess, (state, action) => {
+    const updatedStudents = state.students.map(student =>
+      student.id === action.data.id ? action.data : student
+    );
+    return {
+      ...state,
+      isLoading: false,
+      users: updatedStudents,
+    };
+  }),
+
+  on(StudentActions.updateStudentFailure, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.error,
+  })),
+
+    on(StudentActions.deleteStudentById, (state) => ({
+      ...state,
+      isLoading: true,
+    })),
+
+    on(StudentActions.deleteStudentByIdSuccess, (state, action) => ({
+      ...state,
+      isLoading: false,
+      students: state.students.filter((student) => student.id !== action.data.id),
+    })),
+
+    on(StudentActions.deleteStudentByIdFailure, (state, action) => ({
+      ...state,
+      isLoading: false,
+      error: action.error,
+    }))
+  );
+
+export const studentFeature = createFeature({
+  name: studentFeatureKey,
+  reducer,
+});

@@ -1,41 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IStudents } from './models';
+import { ICreateStudentPayload, IStudents } from './models';
 import { environment } from '../../../../../environments/environment.development';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class StudentsService {
-  createUser(result: any) {
-    throw new Error('Method not implemented.');
-  }
-  getUsers() {
-    throw new Error('Method not implemented.');
-  }
 
-  private apiUrl = environment.baseAPIURL;
-
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   getStudents(): Observable<IStudents[]> {
-    return this.http.get<IStudents[]>(`${this.apiUrl}/students`);
+    return this.httpClient.get<IStudents[]>(environment.baseAPIURL +`/students`);
   }
 
-  getStudentById(id: number): Observable<IStudents> {
-    return this.http.get<IStudents>(`${this.apiUrl}/students/${id}`);
+  createStudent(payload: ICreateStudentPayload): Observable<IStudents> {
+    return this.httpClient.post<IStudents>(environment.baseAPIURL +`/students`, payload);
   }
 
-  createStudent(student: IStudents): Observable<IStudents> {
-    return this.http.post<IStudents>(`${this.apiUrl}/students`, student);
+  updateStudent(id: number, payload: IStudents): Observable<IStudents> {
+    return this.httpClient.put<IStudents>(environment.baseAPIURL +'/students/'+ id, payload);
   }
 
-  updateStudent(student: IStudents): Observable<IStudents> {
-    return this.http.put<IStudents>(`${this.apiUrl}/students/${student.id}`, student);
-  }
-
-  deleteStudent(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/students/${id}`);
+  deleteStudentById(id: string): Observable<IStudents> {
+    return this.httpClient.delete<IStudents>(environment.baseAPIURL +'/students/'+ id);
   }
 }

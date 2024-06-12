@@ -1,31 +1,41 @@
-<div *ngIf="loading$ | async; else content">
-  <mat-spinner></mat-spinner>
+<h2>Inscripciones</h2>
+<div class="d-flex justify-content-end">
+  <button (click)="openDialog()" mat-button color="primary">Agregar</button>
 </div>
 
-<ng-template #content>
-  <div *ngIf="error$ | async; else inscriptionsList">
-    <h2>Ocurrió un error al cargar las inscripciones.</h2>
-  </div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
 
-  <ng-template #inscriptionsList>
-    <h2>Listado de Inscripciones</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre del Estudiante</th>
-          <th>Curso</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let inscription of inscriptions$ | async">
-          <td>{{ inscription.id }}</td>
-          <td>{{ inscription.studentName }}</td>
-          <td>{{ inscription.course }}</td>
-          <td>{{ inscription.date }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </ng-template>
-</ng-template>
+  <ng-container matColumnDef="course">
+    <th mat-header-cell *matHeaderCellDef> Curso </th>
+    <td mat-cell *matCellDef="let element"> {{element.course?.course}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="student">
+    <th mat-header-cell *matHeaderCellDef> Estudiante </th>
+    <td mat-cell *matCellDef="let element"> {{element.student?.firstName}} {{element.student?.lastName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+    <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let element">
+      <button *ngIf="currentUser?.role === 'ADMIN'" (click)="openDialog(element)" mat-icon-button color="accent">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="currentUser?.role === 'ADMIN'" (click)="onDelete(element.id)" mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

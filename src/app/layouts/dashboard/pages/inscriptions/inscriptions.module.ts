@@ -12,9 +12,11 @@ import { StoreModule } from '@ngrx/store';
 import { InscriptionEffects } from './store/inscription.effects';
 import { inscriptionFeature } from './store/inscription.reducer';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SharedModule } from '../../../../shared/shared.module';
+import { InscriptionsDialogComponent } from './components/inscriptions-dialog/inscriptions-dialog.component';
 
 @NgModule({
-  declarations: [InscriptionsComponent],
+  declarations: [InscriptionsComponent, InscriptionsDialogComponent],
   imports: [
     CommonModule,
     InscriptionsRoutingModule,
@@ -25,7 +27,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatFormFieldModule,
     StoreModule.forFeature(inscriptionFeature),
     EffectsModule.forFeature([InscriptionEffects]),
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    SharedModule
   ]
 })
+
 export class InscriptionsModule { }

@@ -11,7 +11,6 @@ export class AppComponent {
 
   constructor(){
     if(!environment.isProd){
-      console.log(environment)
     }
   }
 }

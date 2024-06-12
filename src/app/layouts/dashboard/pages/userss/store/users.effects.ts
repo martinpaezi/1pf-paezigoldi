@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Observable, EMPTY, of } from 'rxjs';
 import { UserActions } from './users.actions';
 import { UserssService } from '../userss.service';
 import Swal from 'sweetalert2';
@@ -15,8 +15,8 @@ export class UserEffects {
       ofType(UserActions.loadUsers),
       concatMap(() =>
         this.userssService.getUserss().pipe(
-          map(data => UserActions.loadUsersSuccess({ data })),
-          catchError((error: HttpErrorResponse) => of(UserActions.loadUsersFailure({ error })))
+          map((data) => UserActions.loadUsersSuccess({ data })),
+          catchError((error) => of(UserActions.loadUsersFailure({ error })))
         )
       )
     );
@@ -28,14 +28,14 @@ export class UserEffects {
       concatMap((action) =>
         this.userssService.createUser(action.payload).pipe(
           map((data) => UserActions.createUserSuccess({ data })),
-          catchError((error: HttpErrorResponse) =>
+          catchError((error) =>
             of(UserActions.createUserFailure({ error }))
           )
         )
       )
     );
   });
-
+ 
   updateUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.updateUser),
@@ -54,9 +54,9 @@ export class UserEffects {
     return this.actions$.pipe(
       ofType(UserActions.deleteUserById),
       concatMap((action) =>
-        this.userssService.deleteUser(action.id).pipe(
-          map(() => UserActions.deleteUserByIdSuccess({ id: action.id })),
-          catchError((error: HttpErrorResponse) =>
+        this.userssService.deleteUserById(action.id).pipe(
+          map((data) => UserActions.deleteUserByIdSuccess({ data })),
+          catchError((error) =>
             of(UserActions.deleteUserByIdFailure({ error }))
           )
         )
@@ -77,7 +77,7 @@ export class UserEffects {
           if (action.error instanceof HttpErrorResponse) {
             Swal.fire({
               icon: 'error',
-              text: action.error.message,
+              text: action.error['message'],
             });
           }
         })

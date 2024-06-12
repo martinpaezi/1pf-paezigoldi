@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { UsersService } from './users.service';
-import { IStudents } from '../../layouts/dashboard/pages/students/models';
+import { IUserss } from '../../layouts/dashboard/pages/userss/models';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -23,18 +23,18 @@ describe('UsersService', () => {
   });
 
   it('debería establecer authUser$ correctamente después de iniciar sesión', () => {
-    const testUser: IStudents = {
+    const testUser: IUserss = {
       id: 1,
       firstName: 'Martin',
       lastName: 'Paez',
       fullName: '',
-      course: 'Angular',
       email: 'martin@mail.com',
+      password: '',
       role: 'ADMIN',
       createdAt: new Date()    
     };
 
-    service.login();
+    // service.login();
 
     service.authUser$.subscribe(user => {
       expect(user).toEqual(testUser);

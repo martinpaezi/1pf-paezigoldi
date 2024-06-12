@@ -12,6 +12,7 @@ import { FullNamePipe } from './pipes/full-name.pipe';
 import { TitleSizeDirective } from './directives/title-size.directive';
 import {MatListModule} from '@angular/material/list'; 
 
+
 @NgModule({
   declarations: [
     FullNamePipe,
@@ -32,7 +33,7 @@ import {MatListModule} from '@angular/material/list';
     FullNamePipe,
     TitleSizeDirective,
     MatListModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class SharedModule { }

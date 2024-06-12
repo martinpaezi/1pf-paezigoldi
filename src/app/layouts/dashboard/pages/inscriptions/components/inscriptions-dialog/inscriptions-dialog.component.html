@@ -1,0 +1,31 @@
+<h2>{{ editingInscriptions ? 'Editar Inscripción' : 'Agregar Inscripción' }}</h2>
+<form [formGroup]="inscriptionsForm">
+  <div class="row">
+    <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Curso</mat-label>
+          <mat-select formControlName="courseId">
+            <mat-option *ngFor="let course of courses" [value]="course.id">
+              {{ course.course }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="inscriptionsForm.controls['courseId'].hasError('required')">El curso es obligatorio</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Estudiante</mat-label>
+          <mat-select formControlName="studentId">
+            <mat-option *ngFor="let student of students" [value]="student.id">
+              {{ student.firstName }} {{ student.lastName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="inscriptionsForm.controls['studentId'].hasError('required')">El estudiante es obligatorio</mat-error>
+        </mat-form-field>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end" mat-dialog-actions>
+    <button mat-button mat-dialog-close type="button">Cancelar</button>
+    <button mat-button type="submit" (click)="onSave()" [disabled]="inscriptionsForm.invalid">Guardar</button>
+  </div>
+</form>

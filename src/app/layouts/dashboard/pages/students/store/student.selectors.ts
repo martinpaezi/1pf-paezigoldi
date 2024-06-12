@@ -1,19 +1,20 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { StudentState, studentAdapter } from './student.reducer';
+import * as fromStudent from './student.reducer';
 
-export const selectStudentState = createFeatureSelector<StudentState>('students');
+export const selectStudentState = createFeatureSelector<fromStudent.State>(
+  fromStudent.studentFeatureKey
+);
 
-const {
-  selectIds,
-  selectEntities,
-  selectAll,
-  selectTotal,
-} = studentAdapter.getSelectors();
+export const selectIsLoading = createSelector(selectStudentState, (state) => {
+  return state.isLoading;
+});
 
-export const selectStudentIds = selectIds;
-export const selectStudentEntities = selectEntities;
-export const selectAllStudents = selectAll;
-export const selectStudentTotal = selectTotal;
+export const selectStudent = createSelector(
+  selectStudentState,
+  (state) => state.students
+);
 
-export const selectStudentById = (id: number) =>
-  createSelector(selectStudentEntities, (students) => students[id]);
+export const selectStudentError = createSelector(
+  selectStudentState,
+  (state) => state.error
+);

@@ -20,15 +20,20 @@ export class UserssDialogComponent {
     this.userssForm = this.formBuilder.group({
       firstName: [editingUserss?.firstName || '', Validators.required],
       lastName: [editingUserss?.lastName || '', Validators.required],
+      password: [editingUserss?.password || '', Validators.required],
       email: [editingUserss?.email || '', [Validators.required, Validators.email]],
-      course: [editingUserss?.course || '', Validators.required],
-      role: [editingUserss?.role || 'ESTUDIANTE', Validators.required],
+      role: [editingUserss?.role || 'ADMIN', Validators.required],
     });
+    if (editingUserss) {
+      this.userssForm.patchValue(editingUserss);
+    }
   }
 
   onSave(): void {
-    if (this.userssForm.valid) {
-      this.matDialogRef.close(this.userssForm.value);
+    if (this.userssForm.invalid) {
+      this.userssForm.markAllAsTouched();
+    } else {
+        this.matDialogRef.close(this.userssForm.value);
     }
   }
 }

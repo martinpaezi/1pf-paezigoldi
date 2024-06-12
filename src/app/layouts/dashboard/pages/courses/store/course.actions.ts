@@ -1,44 +1,24 @@
-import { createAction, props } from '@ngrx/store';
-import { ICourse } from '../models';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { ICourse, ICreateCoursePayload } from '../models';
+import { HttpErrorResponse } from '@angular/common/http';
 
-export const loadCourses = createAction('[Courses] Load Courses');
+export const CourseActions = createActionGroup({
+  source: 'Course',
+  events: {
+    'Load Courses': emptyProps(),
+    'Load Courses Success': props<{ data: ICourse[] }>(),
+    'Load Courses Failure': props<{ error: unknown }>(),
 
-export const loadCoursesSuccess = createAction(
-  '[Courses] Load Courses Success',
-  props<{ courses: ICourse[] }>()
-);
+    'Create Course': props<{ payload: ICreateCoursePayload }>(),
+    'Create Course Success': props<{ data: ICourse }>(),
+    'Create Course Failure': props<{ error: unknown }>(),
 
-export const loadCoursesFailure = createAction(
-  '[Courses] Load Courses Failure',
-  props<{ error: any }>()
-);
+    'Update Course': props<{  id: number ,payload: ICourse }>(),
+    'Update Course Success': props<{ data: ICourse }>(),
+    'Update Course Failure': props<{ error: unknown }>(),
 
-export const deleteCourse = createAction(
-  '[Courses] Delete Course',
-  props<{ id: number }>()
-);
-
-export const deleteCourseSuccess = createAction(
-  '[Courses] Delete Course Success',
-  props<{ id: number }>()
-);
-
-export const deleteCourseFailure = createAction(
-  '[Courses] Delete Course Failure',
-  props<{ error: any }>()
-);
-
-export const updateCourse = createAction(
-  '[Courses] Update Course',
-  props<{ id: number, changes: Partial<ICourse> }>()
-);
-
-export const updateCourseSuccess = createAction(
-  '[Courses] Update Course Success',
-  props<{ course: ICourse }>()
-);
-
-export const updateCourseFailure = createAction(
-  '[Courses] Update Course Failure',
-  props<{ error: any }>()
-);
+    'Delete Course By Id': props<{ id: number }>(),
+    'Delete Course By Id Success': props<{ data: ICourse }>(),
+    'Delete Course By Id Failure': props<{ error: HttpErrorResponse }>(),
+  },
+});
